@@ -7,6 +7,8 @@ Crear un formulario para generar reportes de las reservaciones, debe generar los
 NOTA: para las tablas de clientes y cuartos pueden dejar datos insertados desde la base de datos
 
 ---------Criterios de Evaluación--------
+
+
 El programa debe realizar correctamente lo que se indicó en el ejercicio.
 El código debe ser un código ordenado.
 Debe trabajar con Visual Studio y SQL Server
