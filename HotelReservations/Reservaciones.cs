@@ -269,7 +269,7 @@ namespace HotelReservations
 
             try
             {
-                //Configurar la licencia de QuestPDF
+                //Configurar la licencia de QuestPDF 
                 QuestPDF.Settings.License = QuestPDF.Infrastructure.LicenseType.Community;
                 var document = Document.Create(container =>
                 {
