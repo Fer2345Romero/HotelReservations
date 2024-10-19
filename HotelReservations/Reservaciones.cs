@@ -269,19 +269,18 @@ namespace HotelReservations
 
             try
             {
+                //Configurar la licencia de QuestPDF
+                QuestPDF.Settings.License = QuestPDF.Infrastructure.LicenseType.Community;
                 var document = Document.Create(container =>
                 {
                     container.Page(page =>
                     {
                         page.Size(PageSizes.A4);
                         page.Margin(1, Unit.Centimetre);
-                        page.Header().Element(headerContainer =>
-                        {
-                            ComposeHeader(headerContainer); // Llamar a ComposeHeader
-                        });
+                        page.Header().Element(ComposeHeader);
                         page.Content().Element(contentContainer =>
                         {
-                            ComposeContent(contentContainer, dt); // Llamar a ComposeContent
+                            ComposeContent(contentContainer, dt);
                         });
                         page.Footer().AlignCenter().Text(x =>
                         {
@@ -290,8 +289,8 @@ namespace HotelReservations
                             x.TotalPages();
                         });
                     });
-                });
 
+                });
                 // Guardar el documento PDF
                 document.GeneratePdf(filePath);
                 MessageBox.Show($"Reporte PDF generado exitosamente en: {filePath}", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -331,12 +330,12 @@ namespace HotelReservations
 
                 table.Header(header =>
                 {
-                    header.Cell().Text("ID Reservación");
-                    header.Cell().Text("Cliente");
-                    header.Cell().Text("Habitación");
-                    header.Cell().Text("Fecha de Check-In");
-                    header.Cell().Text("Fecha de Check-Out");
-                    header.Cell().Text("Costo Total");
+                    header.Cell().Text(" ID Reservación ");
+                    header.Cell().Text(" Cliente ");
+                    header.Cell().Text(" Habitación ");
+                    header.Cell().Text(" Fecha de Check-In ");
+                    header.Cell().Text(" Fecha de Check-Out ");
+                    header.Cell().Text(" Costo Total ");
                 });
 
                 foreach (DataRow row in dt.Rows)
@@ -350,5 +349,26 @@ namespace HotelReservations
                 }
             });
         }
+        private static QuestPDF.Infrastructure.IContainer Cell(QuestPDF.Infrastructure.IContainer container)
+        {
+            return container
+                    .Background(Colors.Grey.Lighten2)
+                    .Padding(5)
+                    .DefaultTextStyle(x => x.SemiBold().FontSize(12))
+                    .BorderBottom(1)
+                    .BorderColor(Colors.Black)
+                    .AlignCenter();
+        }
+
+        private static QuestPDF.Infrastructure.IContainer CellContentStyle(QuestPDF.Infrastructure.IContainer container)
+        {
+            return container
+                    .Padding(5)
+                    .BorderBottom(1)
+                    .BorderColor(Colors.Grey.Lighten1)
+                    .AlignCenter()
+                    .DefaultTextStyle(x => x.FontSize(10));
+        }
+
     }
-}
+}    

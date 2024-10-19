@@ -16,7 +16,7 @@ namespace HotelReservations
         public static SqlConnection Conectar()
         {
             // Cadena de conexion
-            string connectionString = "Data Source=FERNANDA\\SQLEXPRESS;Initial Catalog=HotelReservations;Integrated Security=True;Encrypt=False";
+            string connectionString = "Data Source=LISSETH15ARGUET\\SQLEXPRESS01;Initial Catalog=HotelReservations;Integrated Security=True;Encrypt=False";
 
             try
             {
